@@ -24,13 +24,7 @@ if [ ! -z ${MFS_MASTER_PORT+X} ];
         MOUNT="$MOUNT -P $MFS_MASTER_PORT"
 fi
 
-mkdir -p /tmp/ghost
-mv $MOUNT_PATH/* /tmp/ghost
 mkdir -p $MOUNT_PATH && chown root:root $MOUNT_PATH && chmod 777 $MOUNT_PATH
 $MOUNT
-
-if [ ! -f "$MOUNT_PATH/$MOUNT_FOLDER/data/ghost.db" ]; then
-    cp /tmp/ghost/* $MOUNT_PATH/$MOUNT_FOLDER
-fi
 
 node current/index.js
