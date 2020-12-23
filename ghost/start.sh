@@ -27,4 +27,9 @@ fi
 mkdir -p $MOUNT_PATH && chown root:root $MOUNT_PATH && chmod 777 $MOUNT_PATH
 $MOUNT
 
+if [ ! -z ${GHOST_CONFIG+X} ];
+    then
+        echo $GHOST_CONFIG | base64 -d >/var/lib/ghost/config.production.json
+fi
+
 node current/index.js
